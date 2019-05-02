@@ -3,7 +3,7 @@
 # title = "My New Hugo Site"
 
 # baseurl = "/"
-baseurl = "https://yoshwata-hugo-netlify-sample.netlify.com/"
+baseurl = "https://yoshwata-blog.netlify.com/"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 
