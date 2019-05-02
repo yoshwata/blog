@@ -4,9 +4,9 @@ date: 2019-05-01T21:45:44+09:00
 draft: false
 toc: false
 images:
-thumbnail: "/images/linktocat.jpg"
+thumbnail: "/images/raspberrypi.jpg"
 tags:
-  - untagged
+  - raspberrypi
 ---
 
 ### Introduction
@@ -33,7 +33,7 @@ OK, let try to write OS image to your SD card.
 
 ### Download and Install Etcher
 
-Please download Etcher from this site.  
+Please download Etcher from this site.
 https://www.balena.io/etcher/
 
 You can select the platform of app so please select the appropriate one.
@@ -44,7 +44,7 @@ Then install and launch it. The window like below appears.
 
 ### Download Raspbian Stretch Lite image
 
-Go to this site.  
+Go to this site.
 https://www.raspberrypi.org/downloads/raspbian/
 
 Click the "Download ZIP" button of "Raspbian Stretch Lite", then download will start.
@@ -56,10 +56,10 @@ You are able to see file like below after unzip it.
 
 ### Write image with Etcher
 
-Please click "Select image" button and select the image what you get at privious step.
+Please click "Select image" button and select the image what you get at previous step.
 ![etcher-select-image](/images/etcher-select-image.png)
 
-Then, set the SD card to your PC. If it was recognized collectly, Etcher goes to next step.
+Then, set the SD card to your PC. If it was recognized correctly, Etcher goes to next step.
 ![etcher-select-drive](/images/etcher-select-drive.png)
 
 You can also select another SD card by "change button".
@@ -78,5 +78,5 @@ Username: pi
 Password: raspberry
 ```
 
-Please change the passward immidiately with `passwd` command for security.
+Please change the password immediately with `passwd` command for security.
 
