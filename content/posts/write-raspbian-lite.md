@@ -33,7 +33,7 @@ OK, let try to write OS image to your SD card.
 
 ### Download and Install Etcher
 
-Please download Etcher from this site.
+Please download Etcher from this site.  
 https://www.balena.io/etcher/
 
 You can select the platform of app so please select the appropriate one.
@@ -44,7 +44,7 @@ Then install and launch it. The window like below appears.
 
 ### Download Raspbian Stretch Lite image
 
-Go to this site.
+Go to this site.  
 https://www.raspberrypi.org/downloads/raspbian/
 
 Click the "Download ZIP" button of "Raspbian Stretch Lite", then download will start.
