@@ -20,7 +20,7 @@ I introduce about the procedure to create cluster.
 What you need is
 
 - Two or more RaspberryPi
-- SD cards [installed Raspbian](https://yoshwata-blog.netlify.com/posts/write-raspbian-lite/) and enabled SSH
+- SD cards [installed Raspbian](https://yoshwata-blog.netlify.com/posts/write-raspbian-lite/) and [enabled SSH](https://yoshwata-blog.netlify.com/posts/connect-to-raspberrypi-with-ssh/)
 
 ### Install and launch k3s master
 
