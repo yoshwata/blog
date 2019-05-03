@@ -7,6 +7,9 @@ baseurl = "https://yoshwata-blog.netlify.com/"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 googleAnalytics = "UA-139550190-1"
+pygmentsUseClasses = true
+pygmentsCodefences = true
+PygmentsStyle = "monokai"
 
 [params]
   dateform        = "Jan 2, 2006"
