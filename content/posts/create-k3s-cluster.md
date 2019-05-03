@@ -1,7 +1,7 @@
 ---
 title: "Create k3s Cluster"
 date: 2019-05-03T10:45:43+09:00
-draft: true
+draft: false
 toc: false
 images:
 tags:
