@@ -50,7 +50,7 @@ This binding is too redundant, so it might be better to constrain it.
 
 Initialize Helm
 ```bash
-$ helm init --service-account tiller
+$ helm init --service-account tiller --kubeconfig=/var/lib/rancher/k3s/agent/kubeconfig.yaml --tiller-image jessestuart/tiller:latest-arm
 ```
 
 Then, tiller is deployed. You can check it with kubectl.
