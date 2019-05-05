@@ -45,7 +45,7 @@ $ systemctl enable rpcbind nfs-server
 ```
 
 You can check nfs works or not with this command.
-```
+```bash
 $ exportfs
 ```
 It will show error if something wrongs.
@@ -53,7 +53,7 @@ It will show error if something wrongs.
 ### Mount from another host
 
 Please log in to another host and mount the volume with this command.
-```
+```bash
 sudo mount -t nfs -o resvport,rw 192.168.123.11:/mnt/share /home/yoshwata/mnt
 ```
 
