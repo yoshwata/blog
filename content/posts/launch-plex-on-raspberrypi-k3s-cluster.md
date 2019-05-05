@@ -24,7 +24,8 @@ https://www.plex.tv/
 
 ### Prerequisites
 
-- [Setting of nfs](http://localhost:1313/posts/launch-nfs-on-raspberrypi/)
+- [Setting of nfs](https://yoshwata-blog.netlify.com/posts/launch-nfs-on-raspberrypi/)
+- [Setting of helm](https://yoshwata-blog.netlify.com/posts/install-helm-to-k3s/)
  
 ### Clone and modify kube-plex
 
