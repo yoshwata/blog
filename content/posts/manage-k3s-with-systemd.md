@@ -5,7 +5,8 @@ draft: false
 toc: false
 images:
 tags:
-  - untagged
+  - k3s
+  - linux
 ---
 
 ### Introduction
