@@ -84,6 +84,8 @@ Click  `Create Pipeline` button and set the repository of your `screwdriver.yaml
 Then please push `Start` button of your pipeline screen.
 A build will start and you can see the build is works as your `screwdriver.yaml`.
 
+![](/images/build-steps.jpg)
+
 ### Supplements about this workaround
 I will add some comments to [this PR](https://github.com/yoshwata/screwdriver-chart/pull/1/files).
 This workaround is not use `ingress` but `externalIP`. If you would like to use `ingress` and path base routing, please check [this issue](https://github.com/screwdriver-cd/screwdriver/issues/1661).
