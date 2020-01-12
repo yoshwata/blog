@@ -16,6 +16,16 @@ tags:
 ### Prerequisites
 - [2 or more Raspberry pi installed Raspbian lite](https://yoshwata-blog.netlify.com/posts/write-raspbian-lite/)
 
+Please log in master/node, and add some setings to enable cgroup to `/boot/cmdline.txt`.
+Settings to add is `cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory`.
+Below is a example of my cluster.
+```
+$ cat /boot/cmdline.txt
+dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=c0850b4f-02 rootfstype=ext4 elevator=deadline fsck.repair=yes cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory rootwait
+```
+
+k3s fails to start without this settings.
+
 ### Install master
 
 Installing master is pretty easy. It is just hit this command.
