@@ -29,10 +29,10 @@ PygmentsStyle = "monokai"
 
 [languages]
   [languages.en]
-    title = "Hello yoshwata NG"
+    title = "Hello yosaahwata NG"
     subtitle = "A simple theme for Hugo"
     keywords = ""
-    copyright = ""
+    copyright = "yoshwata"
     readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
