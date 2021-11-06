@@ -2,6 +2,11 @@
 title: "Raspbianのiptables問題を解消する"
 date: 2021-10-17T06:24:27Z
 draft: false
+tags:
+  - kubernetes
+  - k3s
+  - network
+  - raspberrypi
 ---
 
 ### 概要
