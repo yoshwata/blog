@@ -14,7 +14,7 @@ kubernetes上でcronjobでnodejsのスクリプトを実行させていると、
 
 まずは基本のサンプルコードです。
 
-```
+```javascript
 const TIMEOUT = Number(process.env.TIMEOUT) || 5000;
 
 const timeout = async (msec) => {
@@ -62,15 +62,15 @@ sys     0m0.087s
 
 そのためタイムアウトを実現する場合には以下のようにexitを追加します。
 
-```
+```javascript
 (async () => {
     return Promise.race([exec(), timeout(TIMEOUT)])
         .then(() => {
-            console.log('bar');
+						console.log('bar');
 						process.exit(0);
         })
         .catch(error => {
-            console.error(error);
+						console.error(error);
 						process.exit(1);
         });
 })()
