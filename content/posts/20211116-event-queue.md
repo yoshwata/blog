@@ -2,6 +2,8 @@
 title: "nodejsのイベントキューの動作確認"
 date: 2021-11-16T10:16:06Z
 draft: false
+tags:
+  - nodejs
 ---
 
 ### 概要

@@ -2,6 +2,8 @@
 title: "Nodejs raceでスクリプトをタイムアウトさせる"
 date: 2021-11-20T10:49:10Z
 draft: false
+tags:
+  - nodejs
 ---
 
 ### 概要
