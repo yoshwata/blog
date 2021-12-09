@@ -517,3 +517,106 @@ spec:
 
 参考までにJson6902に仕様は以下となります。
 https://datatracker.ietf.org/doc/html/rfc6902
+
+### 7 vars
+
+varsは、yaml中の対象の値で指定の文字列を置き換えることができます。
+
+以下のファイルを準備します。
+
+`deployment.yaml`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        command: ["start", "--host", "$(MY_SERVICE_NAME)"]
+```
+
+`kustomization.yaml`
+```yaml
+namePrefix: dev-
+nameSuffix: "-001"
+
+resources:
+- deployment.yaml
+- service.yaml
+
+vars:
+- name: MY_SERVICE_NAME
+  objref:
+    kind: Service
+    name: my-nginx
+    apiVersion: v1
+```
+
+`service.yaml`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  labels:
+    run: my-nginx
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: my-nginx
+```
+
+以上のファイルを用意しkustomizeします。
+
+```yaml
+$ kubectl kustomize ./
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: my-nginx
+  name: dev-my-nginx-001
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: my-nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-my-nginx-001
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: my-nginx
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - command:
+        - start
+        - --host
+        - dev-my-nginx-001
+        image: nginx
+        name: my-nginx
+```
+
+`kustomization.yaml`で定義したとおり、ServiceとDeployment両方の`name`にプリフィックスとサフィックスが付与されています。また注目すべきはDeploymentの`command`です。kustomize前には`$(MY_SERVICE_NAME)`となっていた部分がServiceの`name`と同じ値で置き換えられています。
