@@ -620,3 +620,70 @@ spec:
 ```
 
 `kustomization.yaml`で定義したとおり、ServiceとDeployment両方の`name`にプリフィックスとサフィックスが付与されています。また注目すべきはDeploymentの`command`です。kustomize前には`$(MY_SERVICE_NAME)`となっていた部分がServiceの`name`と同じ値で置き換えられています。
+
+### 8 configurations
+
+configurationsを利用すると任意のリソースに対して`kustomization.yaml`で定義した変換ルールを適用できます。以下のyamlを準備します。
+
+`resources.yaml`
+```yaml
+apiVersion: animal/v1
+kind: Gorilla
+metadata:
+  name: gg
+---
+apiVersion: animal/v1
+kind: AnimalPark
+metadata:
+  name: ap
+spec:
+  gorillaRef:
+    name: gg
+    kind: Gorilla
+    apiVersion: animal/v1
+```
+
+`nameReference.yaml`
+```yaml
+nameReference:
+  - kind: Gorilla
+    fieldSpecs:
+      - kind: AnimalPark
+        path: spec/gorillaRef/name
+```
+
+`kustomization.yaml`
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - resources.yaml
+
+namePrefix: sample-
+
+configurations:
+  - nameReference.yaml
+```
+
+この状態でkustomizeすると以下のようになります。
+
+```yaml
+$ kubectl kustomize ./
+apiVersion: animal/v1
+kind: AnimalPark
+metadata:
+  name: sample-ap
+spec:
+  gorillaRef:
+    apiVersion: animal/v1
+    kind: Gorilla
+    name: sample-gg
+---
+apiVersion: animal/v1
+kind: Gorilla
+metadata:
+  name: sample-gg
+```
+
+出力結果の`metadata.name`については`kustomization.yaml`の`namePrefix`で定義したとおりのプリフィックスが付与されています。しかし、`spec.gorillaRef.name`については`nameReference.yaml`で対象としているためにプリフィックスが付与されています。`kustomization.yaml`と同じ変換ルールを異なる要素にも適用したい場合に有用です。
