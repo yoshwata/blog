@@ -687,3 +687,67 @@ metadata:
 ```
 
 出力結果の`metadata.name`については`kustomization.yaml`の`namePrefix`で定義したとおりのプリフィックスが付与されています。しかし、`spec.gorillaRef.name`については`nameReference.yaml`で対象としているためにプリフィックスが付与されています。`kustomization.yaml`と同じ変換ルールを異なる要素にも適用したい場合に有用です。
+
+### 9 images
+
+対象のリソースのimageをパッチする場合には`images`を使用します。以下のyamlを準備します。
+
+`deployment.yaml`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+```
+
+`kustomization.yaml`
+```yaml
+resources:
+- deployment.yaml
+images:
+- name: nginx
+  newName: alpine
+  newTag: "3.6"
+```
+
+この状態でkustomizeすると以下のようになります。
+
+```yaml
+$ kubectl kustomize ./
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: my-nginx
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - image: alpine:3.6
+        name: my-nginx
+        ports:
+        - containerPort: 80
+```
+
+`kustomization.yaml`の通りimageがパッチされています。`images`は配列で指定可能なため、複数のコンテナの`image`をパッチすることも可能です。`images`にはあくまで`image`の`name`を入れるようにしてください。リソースの`name`ではありません。
